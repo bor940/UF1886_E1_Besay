@@ -2,7 +2,7 @@
 
 <odoo>
     <template id="report_saleorder_document_inherit_codes"
-             inherit="sale.report_document">
+             inherit="sale.report_saleorder_document">
         <!-- Insertaos dos columnas en la cabecera, justo despues de descripcion-->
         <xpath expr="//th[@name='th_description']" position="after">
             <th name = "th_default_code" class="text-start text-nowrap">Ref. Interna</th>
