@@ -1,0 +1,100 @@
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "postgres" (172.20.0.3), port 5432 failed: FATAL:  the database system is shutting down
+
+Exception in thread odoo.service.cron.cron0:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib/python3/dist-packages/odoo/service/server.py", line 541, in target
+    self.cron_thread(i)
+  File "/usr/lib/python3/dist-packages/odoo/service/server.py", line 523, in cron_thread
+    _run_cron(cr)
+  File "/usr/lib/python3/dist-packages/odoo/service/server.py", line 507, in _run_cron
+    pg_conn.poll()
+psycopg2.OperationalError: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+2026-02-26 13:29:53,710 1 INFO odoo_prod odoo.sql_db: Connection to the database failed 
+2026-02-26 13:29:53,711 1 WARNING odoo_prod odoo.addons.base.models.ir_cron: Exception in cron: 
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/odoo/addons/base/models/ir_cron.py", line 132, in _process_jobs
+    with db.cursor() as cron_cr:
+         ^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/odoo/sql_db.py", line 799, in cursor
+    return Cursor(self.__pool, self.__dbname, self.__dsn)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/odoo/sql_db.py", line 288, in __init__
+    self._cnx = pool.borrow(dsn)
+                ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/odoo/tools/func.py", line 97, in locked
+    return func(inst, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/odoo/sql_db.py", line 726, in borrow
+    result = psycopg2.connect(
+             ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "postgres" (172.20.0.3), port 5432 failed: FATAL:  the database system is shutting down
+
+Exception in thread odoo.service.cron.cron1:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1010, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/lib/python3/dist-packages/odoo/service/server.py", line 541, in target
+    self.cron_thread(i)
+  File "/usr/lib/python3/dist-packages/odoo/service/server.py", line 523, in cron_thread
+    _run_cron(cr)
+  File "/usr/lib/python3/dist-packages/odoo/service/server.py", line 507, in _run_cron
+    pg_conn.poll()
+psycopg2.OperationalError: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+2026-02-26 13:29:54,024 1 INFO odoo_prod odoo.sql_db: ConnectionPool(read/write;used=0/count=0/max=64): Closed 2 connections  
+=== Entrypoint Personalizado - Odoo ===
+✓ Admin password cargada (4 caracteres)
+✓ DB password cargada (4 caracteres)
+Configuración detectada:
+  Host: postgres
+  Puerto: 5432
+  Base de datos: odoo_prod
+  Usuario: odoo_prod
+=== Esperando PostgreSQL ===
+✓ PostgreSQL listo
+=== Verificando estado de la BD ===
+✓ Base de datos ya inicializada (517 tablas)
+=== Iniciando Odoo ===
+2026-02-26 13:29:56,415 1 INFO ? odoo: Odoo version 18.0-20251222 
+2026-02-26 13:29:56,418 1 INFO ? odoo: Using configuration file at /tmp/odoo.conf 
+2026-02-26 13:29:56,419 1 INFO ? odoo: addons paths: ['/usr/lib/python3/dist-packages/odoo/addons', '/var/lib/odoo/.local/share/Odoo/addons/18.0', '/mnt/extra-addons'] 
+2026-02-26 13:29:56,419 1 INFO ? odoo: database: odoo_prod@postgres:5432 
+Warn: Can't find .pfb for face 'Courier'
+2026-02-26 13:29:56,626 1 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf 
+2026-02-26 13:29:56,658 1 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltoimage binary at /usr/local/bin/wkhtmltoimage 
+2026-02-26 13:29:56,936 1 INFO ? odoo.service.server: HTTP service (werkzeug) running on 1656b69d7a44:8069 
+2026-02-26 13:29:56,987 1 INFO odoo_prod odoo.modules.loading: loading 1 modules... 
+2026-02-26 13:29:56,996 1 INFO odoo_prod odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2026-02-26 13:29:57,028 1 INFO odoo_prod odoo.modules.loading: loading 72 modules... 
+2026-02-26 13:29:57,803 1 INFO odoo_prod odoo.modules.loading: 72 modules loaded in 0.77s, 0 queries (+0 extra) 
+2026-02-26 13:29:58,094 1 INFO odoo_prod odoo.modules.loading: Modules loaded. 
+2026-02-26 13:29:58,110 1 INFO odoo_prod odoo.modules.registry: Registry loaded in 1.167s 
+2026-02-26 13:30:23,947 1 INFO odoo_prod odoo.addons.base.models.ir_http: Generating routing map for key None 
+2026-02-26 13:30:24,007 1 INFO odoo_prod werkzeug: 192.168.1.72 - - [26/Feb/2026 13:30:24] "GET / HTTP/1.1" 303 - 4 0.014 0.052
+2026-02-26 13:30:24,068 1 INFO odoo_prod werkzeug: 192.168.1.72 - - [26/Feb/2026 13:30:24] "GET /odoo HTTP/1.1" 303 - 1 0.017 0.015
+2026-02-26 13:30:24,741 1 INFO odoo_prod werkzeug: 192.168.1.72 - - [26/Feb/2026 13:30:24] "GET /web/login?redirect=/odoo? HTTP/1.1" 200 - 61 0.123 0.536
+2026-02-26 13:30:25,077 1 INFO odoo_prod werkzeug: 192.168.1.72 - - [26/Feb/2026 13:30:25] "GET /web/binary/company_logo HTTP/1.1" 304 - 2 0.006 0.273
+2026-02-26 13:30:26,914 1 INFO odoo_prod werkzeug: 192.168.1.72 - - [26/Feb/2026 13:30:26] "GET /web/database/manager HTTP/1.1" 200 - 3 0.003 0.046
+2026-02-26 13:39:58,939 1 INFO odoo_prod odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (26) starting 
+2026-02-26 13:39:58,960 1 INFO odoo_prod odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (26) done in 0.020s 
+2026-02-26 13:39:58,968 1 INFO odoo_prod odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (26) processed 0 records, 0 records remaining 
+2026-02-26 13:39:58,981 1 INFO odoo_prod odoo.addons.base.models.ir_cron: Job 'CRM: enrich leads (IAP)' (26) completed 
